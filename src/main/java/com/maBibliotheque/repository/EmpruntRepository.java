@@ -173,4 +173,29 @@ public List<Map<String, Object>> getHistoriqueRetours() {
     return list;
 }
 
+public List<Map<String, Object>> getEmpruntsParTypeAdherent() {
+    List<Map<String, Object>> result = new ArrayList<>();
+    String sql = "SELECT ta.type_adherent, COUNT(e.id_emprunt) AS total " +
+                 "FROM emprunt e " +
+                 "JOIN adherent a ON e.id_adherent = a.id_adherent " +
+                 "JOIN type_adherent ta ON a.id_type_adherent = ta.id_type_adherent " +
+                 "GROUP BY ta.type_adherent";
+
+    try (Connection conn = DatabaseConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql);
+         ResultSet rs = ps.executeQuery()) {
+
+        while (rs.next()) {
+            Map<String, Object> map = new HashMap<>();
+            map.put("type_adherent", rs.getString("type_adherent"));
+            map.put("total", rs.getInt("total"));
+            result.add(map);
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+    return result;
+}
+
+
 }

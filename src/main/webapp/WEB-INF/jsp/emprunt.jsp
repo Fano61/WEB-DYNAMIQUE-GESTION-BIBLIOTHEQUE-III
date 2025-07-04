@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Emprunter un livre</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/style.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/stylee.css">
 </head>
 <body>
     <div class="container">

@@ -41,6 +41,11 @@ public class DashboardServlet extends HttpServlet {
         req.setAttribute("livresPlusEmpruntes", dashboardService.getLivresPlusEmpruntes());
         req.setAttribute("adherentsActifs", dashboardService.getAdherentsActifs());
         // req.setAttribute("profils", dashboardService.getNombreEmpruntsParProfil()); // décommente si implémenté
+        
+    EmpruntRepository empruntRepo = new EmpruntRepository();
+    req.setAttribute("profils", empruntRepo.getEmpruntsParTypeAdherent());
+
+
 
         // Historique
         List<Map<String, Object>> historiqueEmprunts = empruntService.getHistoriqueEmprunts();

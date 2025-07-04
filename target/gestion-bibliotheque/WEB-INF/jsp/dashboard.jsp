@@ -5,13 +5,13 @@
 <html>
 <head>
     <title>Dashboard</title>
-<link rel="stylesheet" href="<%= request.getContextPath() %>/style.css">
+<link rel="stylesheet" href="<%= request.getContextPath() %>/stylee.css">
 </head>
 <body>
 <div class="container">
 <h2>Statistiques</h2>
 
-<h2>📚 Livres les plus empruntés</h2>
+<h2> Livres les plus empruntés</h2>
 <%
     List topLivres = (List) request.getAttribute("topLivres");
     if (topLivres != null && !topLivres.isEmpty()) {
@@ -33,7 +33,7 @@
     }
 %>
 
-<h2>👤 Adhérents les plus actifs</h2>
+<h2> Adhérents les plus actifs</h2>
 <%
     List topAdherents = (List) request.getAttribute("topAdherents");
     if (topAdherents != null && !topAdherents.isEmpty()) {
@@ -55,7 +55,7 @@
     }
 %>
 
-<h3>📊 Emprunts par type d’adhérent</h3>
+<h3> Emprunts par type d’adhérent</h3>
 <%
     List profils = (List) request.getAttribute("profils");
     if (profils != null && !profils.isEmpty()) {
@@ -80,7 +80,7 @@
     }
 %>
 
-<h3>⏰ Taux de retard</h3>
+<h3> Taux de retard</h3>
 <%
     Object tauxRetard = request.getAttribute("tauxRetard");
     if (tauxRetard != null) {
@@ -94,7 +94,7 @@
     }
 %>
 
-<h3>📚 Historique des emprunts</h3>
+<h3> Historique des emprunts</h3>
 <table border="1">
     <tr>
         <th>ID</th>
@@ -123,7 +123,7 @@
 
 <br>
 
-<h3>✅ Historique des retours</h3>
+<h3> Historique des retours</h3>
 <table border="1">
     <tr>
         <th>ID</th>
