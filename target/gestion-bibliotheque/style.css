@@ -1,113 +1,92 @@
 /* Général */
 body {
-    font-family: 'Georgia', serif;
-    background-color: #fdf6e3;
-    color: #4e342e;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #1e1e1e;
+    color: #f0f0f0;
     margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    min-height: 100vh;
-}
-
-/* Conteneur centré */
-.container {
-    width: 90%;
-    max-width: 900px;
-    padding: 30px;
-    background-color: #fffaf0;
-    margin: 40px auto;
-    border-radius: 12px;
-    box-shadow: 0 0 15px rgba(120, 72, 40, 0.2);
+    padding: 20px;
 }
 
 /* Titres */
 h1, h2, h3 {
-    color: #6d4c41;
-    text-align: center;
-    margin-bottom: 20px;
+    color: #d4af37; /* doré, style "ancien livre" */
+    border-bottom: 1px solid #333;
+    padding-bottom: 5px;
 }
 
 /* Liens */
 a {
-    color: #a0522d;
+    color: #61dafb;
     text-decoration: none;
-    font-weight: bold;
 }
 a:hover {
     text-decoration: underline;
 }
 
-/* Tableaux */
+/* Tables */
 table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
 }
 th, td {
-    border: 1px solid #d7ccc8;
-    padding: 12px;
-    text-align: center;
+    border: 1px solid #444;
+    padding: 10px;
+    text-align: left;
 }
 th {
-    background-color: #ffe0b2;
-    color: #5d4037;
+    background-color: #2a2a2a;
+    color: #f8f8f8;
 }
 tr:nth-child(even) {
-    background-color: #fbe9e7;
+    background-color: #2f2f2f;
 }
 
 /* Formulaires */
 form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    margin-top: 20px;
 }
 label {
-    margin-top: 15px;
-    font-weight: bold;
+    display: block;
+    margin-top: 10px;
 }
 input[type="text"],
 input[type="number"],
 select {
-    width: 80%;
-    max-width: 400px;
-    padding: 10px;
-    margin-top: 5px;
-    background-color: #fff3e0;
-    border: 1px solid #bcaaa4;
-    border-radius: 6px;
-    color: #4e342e;
+    width: 300px;
+    padding: 8px;
+    background-color: #333;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 4px;
 }
 input[type="submit"] {
-    margin-top: 20px;
-    padding: 10px 30px;
-    background-color: #a1887f;
-    color: white;
+    margin-top: 15px;
+    padding: 10px 20px;
+    background-color: #d4af37;
+    color: #000;
     border: none;
-    border-radius: 8px;
+    border-radius: 4px;
     cursor: pointer;
-    font-size: 1rem;
 }
 input[type="submit"]:hover {
-    background-color: #8d6e63;
+    background-color: #e0c95c;
 }
 
 /* Messages */
 p {
-    text-align: center;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 p.error {
-    color: #d32f2f;
+    color: #ff6b6b;
 }
 p.success {
-    color: #388e3c;
+    color: #66ff66;
 }
 
 /* Liste */
 ul {
-    list-style-type: circle;
-    padding-left: 20px;
+    list-style: square inside;
+    margin-left: 0;
+    padding-left: 0;
 }

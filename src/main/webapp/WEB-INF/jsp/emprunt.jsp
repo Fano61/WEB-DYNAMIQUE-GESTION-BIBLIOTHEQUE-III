@@ -48,6 +48,12 @@
         </select>
         <br><br>
 
+        <label for="dateRetourPrevue">Date de retour prévue :</label>
+<input type="date" id="dateRetourPrevue" name="dateRetourPrevue" required />
+<br><br>
+
+<br><br>
+
         <input type="submit" value="Emprunter" />
     </form>
 

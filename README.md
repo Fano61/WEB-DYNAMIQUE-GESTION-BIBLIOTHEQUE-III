@@ -1,2 +1,1 @@
-# WEB DYNAMIQUE GESTION BIBLIOTHEQUE II
-version debuggee avec css
+# Gestion_Bibliotheque_web_dyn

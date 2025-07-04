@@ -32,7 +32,7 @@ public class EmpruntService {
         return exemplaireRepository.findExemplairesDisponibles();
     }
 
-    public String emprunterLivre(int idAdherent, int idExemplaire) {
+    public String emprunterLivreAvecDate(int idAdherent, int idExemplaire, LocalDate dateRetourPrevue) {
         if (!adherentRepository.adherentExiste(idAdherent)) return "Erreur : adhérent inexistant.";
         if (!adherentRepository.adherentActif(idAdherent)) return "Erreur : adhérent inactif.";
         if (adherentRepository.estSanctionne(idAdherent)) return "Erreur : adhérent sanctionné.";
@@ -41,14 +41,10 @@ public class EmpruntService {
         if (adherentRepository.quotaDepasse(idAdherent)) return "Erreur : quota d'emprunts atteint.";
         if (!adherentRepository.estAutoriseAEmprunter(idAdherent)) return "Erreur : type d’adhérent non autorisé à emprunter.";
 
-        int duree = adherentRepository.getDureeEmprunt(idAdherent);
-        LocalDate aujourdHui = LocalDate.now();
-        LocalDate dateRetour = DateUtil.ajouterJoursOuvrables(aujourdHui, duree);
-
-        empruntRepository.enregistrerEmprunt(idAdherent, idExemplaire, dateRetour);
+        empruntRepository.enregistrerEmprunt(idAdherent, idExemplaire, dateRetourPrevue);
         exemplaireRepository.marquerIndisponible(idExemplaire);
 
-        return "Emprunt validé. Retour prévu le : " + dateRetour;
+        return "Emprunt validé. Retour prévu le : " + dateRetourPrevue;
     }
 
     public String retournerLivre(int idAdherent, int idExemplaire) {
@@ -90,15 +86,21 @@ public class EmpruntService {
     }
 
     public List<Map<String, Object>> getExemplairesEmpruntes() {
-    return exemplaireRepository.findExemplairesEmpruntes();
-}
+        return exemplaireRepository.findExemplairesEmpruntes();
+    }
 
-public List<Map<String, Object>> getHistoriqueEmprunts() {
-    return empruntRepository.getHistoriqueEmprunts();
-}
+    public List<Map<String, Object>> getHistoriqueEmprunts() {
+        return empruntRepository.getHistoriqueEmprunts();
+    }
 
-public List<Map<String, Object>> getHistoriqueRetours() {
-    return empruntRepository.getHistoriqueRetours();
-}
+    public List<Map<String, Object>> getHistoriqueRetours() {
+        return empruntRepository.getHistoriqueRetours();
+    }
+
+//     public String emprunterLivre(int idAdherent, int idExemplaire) {
+//     int duree = adherentRepository.getDureeEmprunt(idAdherent);
+//     LocalDate dateRetour = DateUtil.ajouterJoursOuvrables(LocalDate.now(), duree);
+//     return emprunterLivre(idAdherent, idExemplaire, dateRetour);
+// }
 
 }

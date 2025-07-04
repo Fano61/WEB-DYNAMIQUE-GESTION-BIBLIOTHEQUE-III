@@ -1,9 +1,12 @@
 package com.maBibliotheque.servlet;
 
 import com.maBibliotheque.service.EmpruntService;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Map;
 
@@ -22,9 +25,7 @@ public class EmpruntServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // Charger la liste des adhérents actifs
         List<Map<String, Object>> adherents = empruntService.getAllAdherents();
-        // Charger la liste des exemplaires disponibles
         List<Map<String, Object>> exemplairesDisponibles = empruntService.getExemplairesDisponibles();
 
         request.setAttribute("adherents", adherents);
@@ -37,18 +38,21 @@ public class EmpruntServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String idAdherentStr = request.getParameter("idAdherent");
         String idExemplaireStr = request.getParameter("idExemplaire");
+        String dateRetourStr = request.getParameter("dateRetourPrevue");
 
+        String message;
         try {
             int idAdherent = Integer.parseInt(idAdherentStr);
             int idExemplaire = Integer.parseInt(idExemplaireStr);
+            LocalDate dateRetourPrevue = LocalDate.parse(dateRetourStr);
 
-            String message = empruntService.emprunterLivre(idAdherent, idExemplaire);
-            request.setAttribute("message", message);
-        } catch (NumberFormatException e) {
-            request.setAttribute("message", "Entrée invalide.");
+            message = empruntService.emprunterLivreAvecDate(idAdherent, idExemplaire, dateRetourPrevue);
+        } catch (NumberFormatException | DateTimeParseException e) {
+            message = "Erreur : données invalides.";
         }
 
-        // Après post, recharger les listes pour ne pas perdre les options dans le formulaire
+        request.setAttribute("message", message);
+
         List<Map<String, Object>> adherents = empruntService.getAllAdherents();
         List<Map<String, Object>> exemplairesDisponibles = empruntService.getExemplairesDisponibles();
 
